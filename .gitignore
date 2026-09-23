@@ -12,3 +12,10 @@ __pycache__/
 /E题数据.zip
 /problem1/models/
 /problem1/work/
+
+# Generated delivery files and experiment results stay local.
+/problem1/delivery/*
+!/problem1/delivery/build_delivery.py
+/problem2/ablations/
+/problem2/outputs/
+/problem2/SOLUTION.md

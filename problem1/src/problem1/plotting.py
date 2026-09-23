@@ -16,7 +16,6 @@ def plot_sample(sample: dict[str, Any], output: Path, ffmpeg: str = "ffmpeg") ->
     os.environ.setdefault("XDG_CACHE_HOME", str(Path(tempfile.gettempdir()) / "problem1-xdg-cache"))
     try:
         import matplotlib.pyplot as plt
-        from matplotlib.offsetbox import AnnotationBbox, OffsetImage
     except ImportError as exc:
         raise RuntimeError("plotting requires matplotlib; install the extract extra") from exc
     length = int(sample["valid_length"])
@@ -32,7 +31,10 @@ def plot_sample(sample: dict[str, Any], output: Path, ffmpeg: str = "ffmpeg") ->
         ]
     ).T
 
-    figure, axes = plt.subplots(4, 1, figsize=(16, 10), sharex=True, constrained_layout=True)
+    figure, axes = plt.subplots(
+        4, 1, figsize=(16, 10), sharex=True, constrained_layout=True,
+        gridspec_kw={"height_ratios": [1.1, 1.0, 1.4, 1.0]},
+    )
     title = f"{sample['id']} — {sample['raw_text']}".replace("$", r"\$")
     axes[0].set_title(title)
     for word, (start, end) in zip(words, intervals):
@@ -46,7 +48,8 @@ def plot_sample(sample: dict[str, Any], output: Path, ffmpeg: str = "ffmpeg") ->
     axes[1].set_ylabel("log RMS")
     axes[1].grid(alpha=0.2)
 
-    chosen = np.unique(np.linspace(0, max(0, length - 1), min(6, length)).astype(int))
+    chosen = np.unique(np.linspace(0, max(0, length - 1), min(5, length)).astype(int))
+    frame_width = min(0.38, (intervals[-1, 1] - intervals[0, 0]) / (len(chosen) * 1.5))
     with tempfile.TemporaryDirectory(prefix="problem1_frames_") as temporary:
         for index in chosen:
             image_path = Path(temporary) / f"frame_{index}.jpg"
@@ -54,22 +57,34 @@ def plot_sample(sample: dict[str, Any], output: Path, ffmpeg: str = "ffmpeg") ->
                 [ffmpeg, "-nostdin", "-loglevel", "error", "-y", "-ss", str(centres[index]), "-i", sample["video_path"], "-frames:v", "1", str(image_path)],
                 check=True,
             )
-            image = plt.imread(image_path)
-            axes[2].add_artist(AnnotationBbox(OffsetImage(image, zoom=0.13), (centres[index], 0.5), frameon=False))
+            frame = plt.imread(image_path)
+            axes[2].imshow(
+                frame, extent=(centres[index] - frame_width / 2, centres[index] + frame_width / 2, 0.08, 0.92),
+                aspect="auto", interpolation="nearest", clip_on=True,
+            )
+            axes[2].text(centres[index], 0.98, f"{centres[index]:.2f}s", ha="center", va="top", fontsize=8)
         axes[2].set_ylim(0, 1)
-        axes[2].set_ylabel("keyframes")
+        axes[2].set_ylabel("video frames")
 
+    # Feature scales differ greatly; rescale each modality only for display.
+    scaled = np.zeros_like(modality_norms)
+    for row in range(3):
+        low = float(modality_norms[row].min())
+        high = float(modality_norms[row].max())
+        if high > low:
+            scaled[row] = (modality_norms[row] - low) / (high - low)
     image = axes[3].imshow(
-        modality_norms,
+        scaled,
         aspect="auto",
         interpolation="nearest",
         extent=(intervals[0, 0], intervals[-1, 1], 2.5, -0.5),
-        cmap="viridis",
+        cmap="viridis", vmin=0, vmax=1,
     )
     axes[3].set_yticks([0, 1, 2], ["text", "audio", "vision"])
-    axes[3].set_ylabel("feature norm")
+    axes[3].set_ylabel("relative norm")
     axes[3].set_xlabel("time (seconds)")
-    figure.colorbar(image, ax=axes[3], pad=0.01)
+    figure.colorbar(image, ax=axes[3], pad=0.01, label="within-modality norm range")
+    axes[3].set_xlim(intervals[0, 0] - 0.2, intervals[-1, 1] + 0.2)
     output.parent.mkdir(parents=True, exist_ok=True)
     figure.savefig(output, dpi=180)
     plt.close(figure)

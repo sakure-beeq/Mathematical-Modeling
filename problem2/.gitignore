@@ -1,0 +1,6 @@
+cache/
+outputs/.matplotlib/
+.matplotlib/
+smoke*/
+__pycache__/
+tests/__pycache__/
