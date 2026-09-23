@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "problem1-multimodal-features"
+version = "0.1.0"
+description = "Word-timeline multimodal feature extraction for Problem 1"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "openpyxl>=3.1",
+]
+
+[project.optional-dependencies]
+extract = [
+  "librosa>=0.10.1",
+  "soundfile>=0.12",
+  "torch>=2.1",
+  "transformers>=4.38",
+  "matplotlib>=3.7",
+]
+test = ["pytest>=7.4"]
+
+[project.scripts]
+problem1 = "problem1.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+work/
+outputs/*
+!outputs/problem1_features.pkl
+!outputs/problem1_features.audit.json
+!outputs/problem1_features.audit.jsonl
+!outputs/problem1_features.manifest.csv
+!outputs/problem1_features.manifest.json
+!outputs/problem1_features.processing.log
+!outputs/problem1_features.reproduce.md
+!outputs/problem1_features.summary.json
+!outputs/sample_000_timeline.png

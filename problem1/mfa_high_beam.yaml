@@ -1,0 +1,4 @@
+# Wider search for short/noisy MOSEI clips that fail MFA's default 10/40 beams.
+beam: 100
+retry_beam: 400
+

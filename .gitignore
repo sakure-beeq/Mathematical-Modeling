@@ -1,0 +1,14 @@
+.DS_Store
+.vscode/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+~$*
+
+# Source datasets and downloaded or compiled models are too large for Git.
+/E题数据/
+/E题数据.zip
+/problem1/models/
+/problem1/work/
