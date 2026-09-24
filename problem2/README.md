@@ -25,8 +25,10 @@ python -m unittest discover -s problem2/tests -v
 
 `prepare` 在本地生成 `problem2/cache/`，训练、评价及推理生成 `problem2/outputs/`，消融实验可写入 `problem2/ablations/`。这些目录包含数据缓存、模型权重或实验结果，不纳入本仓库的新提交。
 
+未对齐版本可运行 `python problem2/prepare_unaligned.py`，将本地未对齐特征汇总到 `problem2/cache_unaligned/`。训练或推理时可通过 `main.py` 的数据目录参数使用该缓存。`attachment3_report.py` 和 `compare_attachment3_versions.py` 分别生成附件 3 的预测汇总及对齐版、未对齐版比较；两者的结果默认写入本地 `outputs/`。
+
 ## 方法与入口
 
-`data.py` 处理文本、语音和视觉特征及可用性掩码，`model.py` 定义时序编码、跨模态重建和融合预测模型，`experiment.py` 实现训练与评价，`main.py` 提供命令行入口。`class_metrics.py`、`error_analysis.py`、`robustness_report.py` 等脚本用于生成本地分析结果，`figures/` 中的脚本生成图表。
+`data.py` 处理文本、语音和视觉特征及可用性掩码，`model.py` 定义时序编码、跨模态重建和融合预测模型，`experiment.py` 实现训练与评价，`main.py` 提供命令行入口。`prepare_unaligned.py` 处理未对齐版本。`class_metrics.py`、`error_analysis.py`、`robustness_report.py` 等脚本用于生成本地分析结果，`figures/` 中的脚本生成图表。
 
 使用 `python problem2/main.py --help` 查看全部子命令和参数。复现实验时先运行 `prepare`，再训练、选择模型并评价。原始数据、缓存和结果由使用者在本地准备或生成。
