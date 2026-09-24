@@ -1,0 +1,11 @@
+{
+  "n": 30,
+  "class_counts": {
+    "Negative": 6,
+    "Neutral": 8,
+    "Positive": 16
+  },
+  "score_mean": 0.4080155333333334,
+  "mean_missing_ratio": 0.13416360000000002,
+  "ground_truth_available": false
+}

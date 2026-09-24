@@ -49,6 +49,9 @@ def parser() -> argparse.ArgumentParser:
     fit.add_argument("--lr-drop-epoch", type=int,
                      help="first epoch to use a reduced learning rate")
     fit.add_argument("--lr-drop-factor", type=float, default=0.25)
+    fit.add_argument("--ema-start-epoch", type=int,
+                     help="copy model into EMA at this epoch end, then update after each step")
+    fit.add_argument("--ema-decay", type=float, default=0.995)
     ev = sub.add_parser("evaluate")
     ev.add_argument("--data", type=Path, default=ROOT / "problem2/cache")
     ev.add_argument("--checkpoint", type=Path, default=ROOT / "problem2/outputs/best.pt")
@@ -99,7 +102,8 @@ def main() -> None:
               lr=a.lr, patience=a.patience, seed=a.seed,
               device_name=a.device, limit=a.limit, ablation=a.ablation,
               record_train_metrics=a.record_train_metrics,
-              lr_drop_epoch=a.lr_drop_epoch, lr_drop_factor=a.lr_drop_factor)
+              lr_drop_epoch=a.lr_drop_epoch, lr_drop_factor=a.lr_drop_factor,
+              ema_start_epoch=a.ema_start_epoch, ema_decay=a.ema_decay)
     elif a.command == "evaluate":
         evaluate(a.data, a.checkpoint, a.out, a.split, a.batch_size,
                  a.device, a.bootstrap)

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import copy
 import json
 import os
 import random
@@ -133,6 +134,15 @@ def task_loss_from_predictions(predictions: dict, class_weights: np.ndarray) -> 
     return float(classification + regression)
 
 
+@torch.no_grad()
+def update_ema(ema_model: RobustFusion, model: RobustFusion, decay: float) -> None:
+    """Average parameters after each optimizer step; copy non-parameter buffers."""
+    for averaged, current in zip(ema_model.parameters(), model.parameters()):
+        averaged.lerp_(current.detach(), 1.0 - decay)
+    for averaged, current in zip(ema_model.buffers(), model.buffers()):
+        averaged.copy_(current)
+
+
 def bootstrap_ci(predictions: dict, repeats: int = 500, seed: int = 2026) -> dict:
     rng = np.random.default_rng(seed)
     n = len(predictions["class"])
@@ -178,9 +188,12 @@ def train(data_dir: Path, out_dir: Path, *, epochs: int = 20,
           dropout: float = 0.2, lr: float = 2e-4, patience: int = 5,
           seed: int = 2026, device_name: str = "cpu", limit: int | None = None,
           ablation: str = "none", record_train_metrics: bool = False,
-          lr_drop_epoch: int | None = None, lr_drop_factor: float = 0.25) -> None:
+          lr_drop_epoch: int | None = None, lr_drop_factor: float = 0.25,
+          ema_start_epoch: int | None = None, ema_decay: float = 0.995) -> None:
     if lr_drop_epoch is not None and (lr_drop_epoch < 2 or not 0 < lr_drop_factor < 1):
         raise ValueError("lr drop requires epoch >= 2 and factor between 0 and 1")
+    if ema_start_epoch is not None and (ema_start_epoch < 1 or not 0 < ema_decay < 1):
+        raise ValueError("EMA requires start epoch >= 1 and decay between 0 and 1")
     set_seed(seed)
     torch.set_num_threads(min(8, torch.get_num_threads()))
     device = torch.device(device_name)
@@ -204,11 +217,13 @@ def train(data_dir: Path, out_dir: Path, *, epochs: int = 20,
               "lr": lr, "seed": seed, "batch_size": batch_size,
               "epochs_requested": epochs, "patience": patience,
               "class_counts": counts.tolist(), "limit": limit, "ablation": ablation,
-              "lr_drop_epoch": lr_drop_epoch, "lr_drop_factor": lr_drop_factor}
+              "lr_drop_epoch": lr_drop_epoch, "lr_drop_factor": lr_drop_factor,
+              "ema_start_epoch": ema_start_epoch, "ema_decay": ema_decay}
     (out_dir / "training_config.json").write_text(json.dumps(config, indent=2), encoding="utf-8")
     best = float("-inf")
     stale = 0
     log = []
+    ema_model = None
     for epoch in range(1, epochs + 1):
         if epoch == lr_drop_epoch:
             for group in optimizer.param_groups:
@@ -247,17 +262,42 @@ def train(data_dir: Path, out_dir: Path, *, epochs: int = 20,
             loss.backward()
             nn.utils.clip_grad_norm_(model.parameters(), 1.0)
             optimizer.step()
+            if ema_model is not None:
+                update_ema(ema_model, model, ema_decay)
             total += float(loss.detach()) * len(y_class)
+        if epoch == ema_start_epoch:
+            ema_model = copy.deepcopy(model)
+            ema_model.eval()
         clean_valid_predictions = predict_loader(model, valid_loader, device)
         clean_valid = metrics_from_predictions(clean_valid_predictions)
         missing_valid = metrics_from_predictions(
             predict_loader(model, valid_loader, device, (0.3, "random", "TAV", seed)))
-        selection = (0.5 * clean_valid["macro_f1"] + 0.5 * missing_valid["macro_f1"]
-                     - 0.05 * missing_valid["mae"])
+        raw_selection = (0.5 * clean_valid["macro_f1"] + 0.5 * missing_valid["macro_f1"]
+                         - 0.05 * missing_valid["mae"])
         entry = {"epoch": epoch, "train_loss": total / len(train_data),
                  "learning_rate": optimizer.param_groups[0]["lr"],
-                 "selection": selection, "valid_clean": clean_valid,
+                 "selection": raw_selection, "raw_selection": raw_selection,
+                 "valid_clean": clean_valid,
                  "valid_missing_30pct": missing_valid}
+        if ema_model is not None:
+            if epoch == ema_start_epoch:
+                ema_clean_predictions = clean_valid_predictions
+                ema_clean = clean_valid
+                ema_missing = missing_valid
+            else:
+                cuda_devices = ([device.index if device.index is not None else torch.cuda.current_device()]
+                                if device.type == "cuda" else [])
+                with torch.random.fork_rng(devices=cuda_devices):
+                    ema_clean_predictions = predict_loader(ema_model, valid_loader, device)
+                    ema_missing_predictions = predict_loader(
+                        ema_model, valid_loader, device, (0.3, "random", "TAV", seed))
+                ema_clean = metrics_from_predictions(ema_clean_predictions)
+                ema_missing = metrics_from_predictions(ema_missing_predictions)
+            ema_selection = (0.5 * ema_clean["macro_f1"] + 0.5 * ema_missing["macro_f1"]
+                             - 0.05 * ema_missing["mae"])
+            entry.update({"ema_valid_clean": ema_clean,
+                          "ema_valid_missing_30pct": ema_missing,
+                          "ema_selection": ema_selection, "selection": ema_selection})
         if train_eval_loader is not None:
             # Iterating a DataLoader consumes torch RNG state even without shuffling.
             # Restore it so recording metrics cannot alter later training epochs.
@@ -265,20 +305,35 @@ def train(data_dir: Path, out_dir: Path, *, epochs: int = 20,
                             if device.type == "cuda" else [])
             with torch.random.fork_rng(devices=cuda_devices):
                 clean_train_predictions = predict_loader(model, train_eval_loader, device)
+                if ema_model is not None and epoch != ema_start_epoch:
+                    ema_train_predictions = predict_loader(
+                        ema_model, train_eval_loader, device)
             entry["train_clean"] = metrics_from_predictions(clean_train_predictions)
             weights = class_weights.detach().cpu().numpy()
             entry["train_eval_task_loss"] = task_loss_from_predictions(
                 clean_train_predictions, weights)
             entry["valid_eval_task_loss"] = task_loss_from_predictions(
                 clean_valid_predictions, weights)
+            if ema_model is not None:
+                if epoch == ema_start_epoch:
+                    ema_train_predictions = clean_train_predictions
+                entry["ema_train_clean"] = metrics_from_predictions(ema_train_predictions)
+                entry["ema_train_eval_task_loss"] = task_loss_from_predictions(
+                    ema_train_predictions, weights)
+                entry["ema_valid_eval_task_loss"] = task_loss_from_predictions(
+                    ema_clean_predictions, weights)
         log.append(entry)
         print(f"epoch {epoch}: loss={entry['train_loss']:.4f} "
               f"clean F1={clean_valid['macro_f1']:.3f} "
-              f"missing F1={missing_valid['macro_f1']:.3f}", flush=True)
-        if selection > best + 1e-4:
-            best = selection
+              f"missing F1={missing_valid['macro_f1']:.3f}"
+              + (f" EMA F1={entry['ema_valid_clean']['macro_f1']:.3f}"
+                 if ema_model is not None else ""), flush=True)
+        if entry["selection"] > best + 1e-4:
+            best = entry["selection"]
             stale = 0
-            torch.save({"model": model.state_dict(), "config": config, "epoch": epoch},
+            chosen = ema_model if ema_model is not None else model
+            torch.save({"model": chosen.state_dict(), "config": config,
+                        "epoch": epoch, "weights_kind": "ema" if ema_model is not None else "raw"},
                        out_dir / "best.pt")
         else:
             stale += 1

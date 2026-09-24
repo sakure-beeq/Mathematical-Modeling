@@ -1,0 +1,11 @@
+{
+  "model": "fixed_gate",
+  "seed": 2028,
+  "dropout": 0.3,
+  "selected_epoch": 9,
+  "checkpoint": "best.pt",
+  "checkpoint_sha256": "136a04d6287541df4ca76e0f5049597ad10bdd08ac72a3b78e5f919c7c231cba",
+  "chart_count": 15,
+  "historical_ablation": "A1_historical_architecture_ablation uses seed 2026 and dropout 0.2",
+  "raw_datasets_included": false
+}
