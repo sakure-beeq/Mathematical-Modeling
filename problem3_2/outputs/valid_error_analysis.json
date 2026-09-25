@@ -1,0 +1,95 @@
+{
+  "n": 728,
+  "wrong_classifications": 272,
+  "confusion_matrix": [
+    [
+      136,
+      39,
+      31
+    ],
+    [
+      26,
+      102,
+      56
+    ],
+    [
+      38,
+      82,
+      218
+    ]
+  ],
+  "neutral_recall": 0.5543478260869565,
+  "largest_score_errors": [
+    {
+      "id": "f_ZJ7L14oYQ$_$21",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.0,
+      "pred_score": -1.4917497634887695
+    },
+    {
+      "id": "102408$_$5",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -2.0,
+      "pred_score": 0.8480949401855469
+    },
+    {
+      "id": "102858$_$4",
+      "true_class": "Positive",
+      "pred_class": "Neutral",
+      "true_score": 3.0,
+      "pred_score": 0.17663848400115967
+    },
+    {
+      "id": "102858$_$6",
+      "true_class": "Positive",
+      "pred_class": "Neutral",
+      "true_score": 2.6666667461395264,
+      "pred_score": -0.0788634866476059
+    },
+    {
+      "id": "266791$_$23",
+      "true_class": "Negative",
+      "pred_class": "Neutral",
+      "true_score": -2.6666667461395264,
+      "pred_score": 0.009229965507984161
+    },
+    {
+      "id": "2S00zYaVrtc$_$10",
+      "true_class": "Negative",
+      "pred_class": "Negative",
+      "true_score": -2.6666667461395264,
+      "pred_score": 0.004675667732954025
+    },
+    {
+      "id": "rojyUp4FPSg$_$9",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.0,
+      "pred_score": -0.4359208345413208
+    },
+    {
+      "id": "101787$_$13",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -1.6666666269302368,
+      "pred_score": 0.7623248100280762
+    },
+    {
+      "id": "130456$_$11",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 1.6666666269302368,
+      "pred_score": -0.6487858891487122
+    },
+    {
+      "id": "102858$_$20",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.0,
+      "pred_score": -0.2857398986816406
+    }
+  ],
+  "note": "Error categories are descriptive; no attachment 4 labels were used."
+}

@@ -1,0 +1,11 @@
+{
+  "n": 60,
+  "sampling": "20 samples per true class, seed 2030",
+  "candidate_selection": "gradient times input; deletion used only for evaluation",
+  "mean_top_deletion_margin_drop": 0.12784116392334302,
+  "mean_random_deletion_margin_drop": -0.00169808529317379,
+  "fraction_top_exceeds_random": 0.6833333333333333,
+  "mean_paired_difference": 0.1295392492165168,
+  "mean_retention_margin": 1.3838302257160346,
+  "fraction_retention_keeps_class": 0.7833333333333333
+}

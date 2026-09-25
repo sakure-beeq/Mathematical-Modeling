@@ -1,0 +1,106 @@
+{
+  "model": "TemporalInteractionNet",
+  "checkpoint": "best.pt",
+  "checkpoint_sha256": "de5df4456265dd4fb9c38998641d0bd2c3f91563f570344464e9b2e82709ba26",
+  "attachment2_source": "E题数据/附件2-数据集特征文件/aligned_50.pkl",
+  "attachment2_source_sha256": "66e867aa74bc70a844e806e5571e371c9abb4a35f9e2887ce9b4d97ff2cb8fcd",
+  "selected_epoch": 3,
+  "train_samples": 3395,
+  "valid_samples": 728,
+  "test_samples": 727,
+  "attachment4_samples": 20,
+  "feature_version": "aligned_50",
+  "attachment4_labels_used": false,
+  "validation_metrics": {
+    "accuracy": 0.6263736263736264,
+    "macro_f1": 0.6164169266008704,
+    "weighted_f1": 0.6310770286361918,
+    "mae": 0.6095343630381599,
+    "pearson": 0.6339019087710412,
+    "confusion_matrix": [
+      [
+        136,
+        39,
+        31
+      ],
+      [
+        26,
+        102,
+        56
+      ],
+      [
+        38,
+        82,
+        218
+      ]
+    ],
+    "bootstrap_95pct_ci": {
+      "accuracy": [
+        0.5913118131868133,
+        0.6620879120879121
+      ],
+      "macro_f1": [
+        0.5790723061275154,
+        0.6539630832861434
+      ],
+      "weighted_f1": [
+        0.5966868270888475,
+        0.6650514333758841
+      ],
+      "mae": [
+        0.5734510096722231,
+        0.6498653825266596
+      ],
+      "pearson": [
+        0.5825759638485571,
+        0.6866192320487138
+      ]
+    }
+  },
+  "test_metrics": {
+    "accuracy": 0.6451169188445667,
+    "macro_f1": 0.6042537587092043,
+    "weighted_f1": 0.647909866640034,
+    "mae": 0.6364329580750516,
+    "pearson": 0.6758381999152219,
+    "confusion_matrix": [
+      [
+        135,
+        43,
+        29
+      ],
+      [
+        31,
+        66,
+        61
+      ],
+      [
+        31,
+        63,
+        268
+      ]
+    ],
+    "bootstrap_95pct_ci": {
+      "accuracy": [
+        0.609353507565337,
+        0.6788514442916093
+      ],
+      "macro_f1": [
+        0.5680792619608785,
+        0.6406456955977473
+      ],
+      "weighted_f1": [
+        0.6133556433539759,
+        0.6818713219494337
+      ],
+      "mae": [
+        0.5992760872064021,
+        0.6768209625127438
+      ],
+      "pearson": [
+        0.621674261482931,
+        0.7205111717855297
+      ]
+    }
+  }
+}

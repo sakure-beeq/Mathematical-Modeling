@@ -1,0 +1,20 @@
+{
+  "n": 20,
+  "class_counts": {
+    "Negative": 6,
+    "Neutral": 5,
+    "Positive": 9
+  },
+  "main_modality_counts": {
+    "text": 14,
+    "audio": 3,
+    "vision": 3
+  },
+  "alignment_methods": {
+    "mfa": 14,
+    "mfa_reconciled": 6
+  },
+  "visual_invalid_ids": [
+    "13"
+  ]
+}
