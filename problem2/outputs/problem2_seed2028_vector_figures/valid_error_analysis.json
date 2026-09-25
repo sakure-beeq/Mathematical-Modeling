@@ -1,0 +1,294 @@
+{
+  "short_text_le_10": {
+    "n": 83,
+    "accuracy": 0.6385542168674698,
+    "macro_f1": 0.6397707231040565,
+    "weighted_f1": 0.6409128577803277,
+    "mae": 0.6215181291462427,
+    "pearson": 0.6505195919834011,
+    "confusion_matrix": [
+      [
+        18,
+        7,
+        1
+      ],
+      [
+        9,
+        15,
+        4
+      ],
+      [
+        3,
+        6,
+        20
+      ]
+    ]
+  },
+  "medium_text_11_to_30": {
+    "n": 459,
+    "accuracy": 0.6427015250544662,
+    "macro_f1": 0.6260405776567257,
+    "weighted_f1": 0.6464354767866086,
+    "mae": 0.5945520033559727,
+    "pearson": 0.6362070223948875,
+    "confusion_matrix": [
+      [
+        76,
+        26,
+        14
+      ],
+      [
+        17,
+        65,
+        38
+      ],
+      [
+        24,
+        45,
+        154
+      ]
+    ]
+  },
+  "long_text_gt_30": {
+    "n": 186,
+    "accuracy": 0.6666666666666666,
+    "macro_f1": 0.6280294486215539,
+    "weighted_f1": 0.6615334707737084,
+    "mae": 0.6840275972430664,
+    "pearson": 0.6557677868689269,
+    "confusion_matrix": [
+      [
+        47,
+        4,
+        13
+      ],
+      [
+        7,
+        15,
+        14
+      ],
+      [
+        15,
+        9,
+        62
+      ]
+    ]
+  },
+  "vision_entirely_unavailable": {
+    "n": 15,
+    "accuracy": 0.6,
+    "macro_f1": 0.638961038961039,
+    "weighted_f1": 0.6067532467532468,
+    "mae": 0.5428698927164077,
+    "pearson": 0.5937112633587218,
+    "confusion_matrix": [
+      [
+        2,
+        1,
+        0
+      ],
+      [
+        0,
+        4,
+        2
+      ],
+      [
+        0,
+        3,
+        3
+      ]
+    ]
+  },
+  "vision_partly_unavailable": {
+    "n": 70,
+    "accuracy": 0.6,
+    "macro_f1": 0.5589891361950186,
+    "weighted_f1": 0.6103154099477629,
+    "mae": 0.6404154406594379,
+    "pearson": 0.6215193411064164,
+    "confusion_matrix": [
+      [
+        9,
+        4,
+        2
+      ],
+      [
+        2,
+        7,
+        6
+      ],
+      [
+        6,
+        8,
+        26
+      ]
+    ]
+  },
+  "vision_all_content_valid": {
+    "n": 643,
+    "accuracy": 0.6547433903576982,
+    "macro_f1": 0.6366776287603768,
+    "weighted_f1": 0.655400724461301,
+    "mae": 0.6201281152563503,
+    "pearson": 0.6485382294062099,
+    "confusion_matrix": [
+      [
+        130,
+        32,
+        26
+      ],
+      [
+        31,
+        84,
+        48
+      ],
+      [
+        36,
+        49,
+        207
+      ]
+    ]
+  },
+  "largest_misclassified_score_errors": [
+    {
+      "id": "f_ZJ7L14oYQ$_$21",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.0,
+      "pred_score": -1.6678225994110107
+    },
+    {
+      "id": "266791$_$23",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -2.6666667461395264,
+      "pred_score": 0.3893890976905823
+    },
+    {
+      "id": "102858$_$6",
+      "true_class": "Positive",
+      "pred_class": "Neutral",
+      "true_score": 2.6666667461395264,
+      "pred_score": -0.2471928745508194
+    },
+    {
+      "id": "102408$_$5",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -2.0,
+      "pred_score": 0.44290691614151
+    },
+    {
+      "id": "252998$_$7",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 1.3333333730697632,
+      "pred_score": -1.0905741453170776
+    },
+    {
+      "id": "33170$_$3",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -2.0,
+      "pred_score": 0.352389931678772
+    },
+    {
+      "id": "k5ZOshC2LP4$_$1",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -1.3333333730697632,
+      "pred_score": 0.9641845226287842
+    },
+    {
+      "id": "130456$_$11",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 1.6666666269302368,
+      "pred_score": -0.5748311281204224
+    },
+    {
+      "id": "223431$_$10",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -1.0,
+      "pred_score": 1.2327423095703125
+    },
+    {
+      "id": "102858$_$21",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 1.0,
+      "pred_score": -1.215209722518921
+    },
+    {
+      "id": "188343$_$13",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 1.0,
+      "pred_score": -1.1088217496871948
+    },
+    {
+      "id": "32681$_$5",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 0.3333333432674408,
+      "pred_score": -1.7206617593765259
+    },
+    {
+      "id": "102858$_$20",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.0,
+      "pred_score": -0.02539776638150215
+    },
+    {
+      "id": "icbUzboLcDQ$_$0",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -0.6666666865348816,
+      "pred_score": 1.3448752164840698
+    },
+    {
+      "id": "rojyUp4FPSg$_$9",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.0,
+      "pred_score": -0.011372355744242668
+    },
+    {
+      "id": "128059$_$6",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 1.0,
+      "pred_score": -1.0083205699920654
+    },
+    {
+      "id": "gR4gM_WXesQ$_$20",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -1.3333333730697632,
+      "pred_score": 0.6686630249023438
+    },
+    {
+      "id": "247318$_$2",
+      "true_class": "Negative",
+      "pred_class": "Neutral",
+      "true_score": -1.6666666269302368,
+      "pred_score": 0.23285099864006042
+    },
+    {
+      "id": "x2lOwQaAn4g$_$4",
+      "true_class": "Neutral",
+      "pred_class": "Positive",
+      "true_score": 0.0,
+      "pred_score": 1.8749971389770508
+    },
+    {
+      "id": "K0m1tO3Ybyc$_$8",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -1.3333333730697632,
+      "pred_score": 0.535912036895752
+    }
+  ]
+}

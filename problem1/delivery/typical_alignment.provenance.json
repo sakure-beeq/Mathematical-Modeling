@@ -1,0 +1,58 @@
+{
+  "sample_index": 0,
+  "sample_id": "-3g5yACwYnA$_$13",
+  "video_duration_s": 5.513997,
+  "wav_duration_s": 5.399125,
+  "valid_word_positions": 15,
+  "raw_audio_feature_shape": [
+    540,
+    74
+  ],
+  "raw_visual_feature_shape": [
+    163,
+    35
+  ],
+  "selected_video_frame_times_s": [
+    1.567,
+    2.367,
+    3.167,
+    3.967,
+    4.733
+  ],
+  "highlight_word": "solutions",
+  "highlight_interval_s": [
+    2.41,
+    2.98
+  ],
+  "audio_recomputed_max_abs_diff": 0.0001220703125,
+  "visual_recomputed_max_abs_diff": 6.103515625e-05,
+  "display_transform": "per-feature channel z-score across displayed valid frames or positions, clipped to [-2.5,2.5]; saved feature arrays unchanged",
+  "source_files": {
+    "video": {
+      "path": "/Users/wangyiming/Desktop/E题/E题数据/附件1-数据集原始多模态样本/MOSEI数据集部分原始视频-100条/-3g5yACwYnA/13.mp4",
+      "bytes": 1052449,
+      "sha256": "aeb47627f59dce3d0a85a44ef35e4a3bc18211498e98c8c11cf60269646df24f"
+    },
+    "wav": {
+      "path": "/Users/wangyiming/Desktop/E题/problem1/work/mfa_corpus/-3g5yACwYnA__13.wav",
+      "bytes": 172850,
+      "sha256": "a9a819084c5ba3b90b7db335514d7f5617fd9429eea9cc3f5b3f9c163f56fc61"
+    },
+    "transcript_lab": {
+      "path": "/Users/wangyiming/Desktop/E题/problem1/work/mfa_corpus/-3g5yACwYnA__13.lab",
+      "bytes": 81,
+      "sha256": "b4908ef894327874eccf743ec6312b6d687aabf5d51cef325c2444a7abb2d852"
+    },
+    "textgrid": {
+      "path": "/Users/wangyiming/Desktop/E题/problem1/work/mfa_alignment/-3g5yACwYnA__13.TextGrid",
+      "bytes": 7619,
+      "sha256": "382005a9b0495e0fb019f2f157dc4911971de593a7b1617398ce685c62107282"
+    },
+    "openface_csv": {
+      "path": "/Users/wangyiming/Desktop/E题/problem1/work/openface/-3g5yACwYnA__13/13.csv",
+      "bytes": 455245,
+      "sha256": "f3737d56b6325eac1765643bbe0b9da5c15d1cc6bd52040f50fb80c75a02603e"
+    }
+  },
+  "feature_sha256": "6121be3dfb272fe1c3ba6994c885826c818649a810eb19d5cf60ae54a69c88e0"
+}

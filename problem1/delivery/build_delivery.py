@@ -6,7 +6,6 @@ import csv
 import hashlib
 import json
 import pickle
-import shutil
 import wave
 import zipfile
 from pathlib import Path
@@ -14,6 +13,7 @@ from pathlib import Path
 import numpy as np
 
 from problem1.core import _frame_bounds
+from gen_fig_typical import make_figure
 
 
 PROJECT = Path(__file__).resolve().parents[1]
@@ -49,6 +49,7 @@ def write_csv(path: Path, rows: list[dict[str, object]]) -> None:
 
 def build() -> None:
     DELIVERY.mkdir(parents=True, exist_ok=True)
+    figure_provenance = make_figure()
     with PICKLE.open("rb") as handle:
         payload = pickle.load(handle)
     with MANIFEST.open(newline="", encoding="utf-8") as handle:
@@ -131,7 +132,6 @@ def build() -> None:
             ),
         })
     write_csv(DELIVERY / "typical_alignment.csv", example_rows)
-    shutil.copyfile(OUTPUTS / "sample_000_timeline.png", DELIVERY / "typical_alignment.png")
 
     selected = (0, 1, 4, 5, 10, 14)
     example_table = "\n".join(
@@ -212,13 +212,13 @@ intervals = data["stacked"]["intervals"][i, :length]
 
 ![典型样本的词、语音、视频帧和三模态特征对应图](typical_alignment.png)
 
-图中上方词区间、语音 `log_rms`、原视频抽取帧以及三模态向量范数共用时间轴。底部范数仅为可视化在各模态内部做0–1范围缩放，**不是模型输入或额外归一化步骤**。
+图中上半部分的五张视频帧来自原MP4，PCM波形来自WAV，音频74维热图来自 {figure_provenance['raw_audio_feature_shape'][0]} 帧重新提取的声学描述符，视觉35维热图来自 {figure_provenance['raw_visual_feature_shape'][0]} 帧OpenFace CSV；它们共用以视频起点为零点的秒轴。中间彩色带按照TextGrid原词区间连接到下方等宽的词序列位置；金色高亮的 `solutions` 对应原视频 {figure_provenance['highlight_interval_s'][0]:.2f}–{figure_provenance['highlight_interval_s'][1]:.2f} 秒和输出位置5。下半部分显示pickle中真实的BERT 768维、语音74维和视觉35维向量。热图颜色仅按每个特征通道在图示范围内计算z分数并截断到±2.5，**不改变提交的特征数值**。本图重新从原始帧池化所得语音和视觉向量，与pickle中相应向量的最大绝对差分别为 {figure_provenance['audio_recomputed_max_abs_diff']:.2e} 和 {figure_provenance['visual_recomputed_max_abs_diff']:.2e}；`typical_alignment.provenance.json` 记录原始文件哈希、帧数、截图时间和核验结果。
 
 ## 4. 复现与附件
 
 环境与流程见 `README.md`、`requirement.md` 和 `problem1_features.reproduce.md`。本次审计记录的主要工具版本：Python {versions['python']}、FFmpeg {versions['ffmpeg'].split()[2]}、MFA {versions['mfa']}、PyTorch {libraries['torch']}、Transformers {libraries['transformers']}、librosa {libraries['librosa']}。OpenFace命令不提供可靠版本号，审计记录了可执行文件和模型SHA-256。`problem1_features.processing.log` 是当前完整重跑日志；`problem1_features.initial_extraction.log` 记录首轮提取中间文件的过程。本次重跑复用了已生成的中间文件，从原视频重新提取请依照复现说明使用独立工作目录。来源与方法文件的逐文件哈希在审计时采集，原始首次提取时未记录逐文件哈希。
 
-提交包包含完整原始特征pickle、100条来源清单、300行模态结果表、典型样本图与逐位表、审计与处理日志、复现说明和提取源码。`SHA256SUMS.txt` 可核对包内文件完整性。
+提交包包含完整原始特征pickle、100条来源清单、300行模态结果表、典型样本PNG/PDF图与逐位表、图像生成脚本及来源记录、审计与处理日志、复现说明和提取源码。`SHA256SUMS.txt` 可核对包内文件完整性。
 """
     (DELIVERY / "report.md").write_text(report, encoding="utf-8")
 
@@ -227,6 +227,8 @@ intervals = data["stacked"]["intervals"][i, :length]
         (DELIVERY / "full_results.csv", "full_results.csv"),
         (DELIVERY / "typical_alignment.csv", "typical_alignment.csv"),
         (DELIVERY / "typical_alignment.png", "typical_alignment.png"),
+        (DELIVERY / "typical_alignment.pdf", "typical_alignment.pdf"),
+        (DELIVERY / "typical_alignment.provenance.json", "typical_alignment.provenance.json"),
         (PICKLE, "problem1_features.pkl"),
     ]
     for extension in ("manifest.csv", "manifest.json", "audit.json", "audit.jsonl", "processing.log", "reproduce.md", "summary.json"):
@@ -239,6 +241,7 @@ intervals = data["stacked"]["intervals"][i, :length]
         files.append((path, f"src/problem1/{path.name}"))
     for path in sorted((PROJECT / "tests").glob("test_*.py")):
         files.append((path, f"tests/{path.name}"))
+    files.append((DELIVERY / "gen_fig_typical.py", "gen_fig_typical.py"))
     files.append((Path(__file__), "build_delivery.py"))
     sums = "\n".join(f"{checksum(path)}  {name}" for path, name in files) + "\n"
     (DELIVERY / "SHA256SUMS.txt").write_text(sums, encoding="utf-8")

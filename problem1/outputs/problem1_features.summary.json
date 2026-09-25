@@ -154,7 +154,7 @@
   },
   "audit": {
     "format": "problem1-audit-v1",
-    "checked_at_utc": "2026-09-23T07:10:09.615162+00:00",
+    "checked_at_utc": "2026-09-23T11:52:56.386406+00:00",
     "labels": {
       "path": "/Users/wangyiming/Desktop/E题/E题数据/附件1-数据集原始多模态样本/MOSEI数据集部分原始视频-100条/label-100.xlsx",
       "bytes": 19776,
@@ -288,8 +288,8 @@
       "audited_source_code": {
         "path": "/Users/wangyiming/Desktop/E题/problem1/src/problem1",
         "file_count": 11,
-        "bytes": 77349,
-        "sha256": "b233b05d4aecd0c1262063cff5e3338499f9f55bfd313fb91fbb28ccff543608"
+        "bytes": 78108,
+        "sha256": "bb86cfead2f9a95723d6d07bd921fdaba992e307b92858ba5f827cba921b123d"
       }
     },
     "checks": {

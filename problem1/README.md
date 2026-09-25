@@ -79,7 +79,13 @@ problem1 audit \
 
 ## 典型样本图
 
-同一时间轴上画词区间、语音 log-RMS、视频关键帧和三模态特征范数：
+提交报告使用 `delivery/gen_fig_typical.py` 从原 MP4、WAV、OpenFace CSV 和特征 pickle 重绘完整时序图，并核对重新池化的语音、视觉向量：
+
+```bash
+PYTHONPATH=src python delivery/gen_fig_typical.py
+```
+
+输出 `delivery/typical_alignment.png`、`delivery/typical_alignment.pdf` 和来源核验记录。命令行简版诊断图仍可按如下方式绘制：
 
 ```bash
 problem1 plot \

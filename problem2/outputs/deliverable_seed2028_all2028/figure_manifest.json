@@ -1,0 +1,48 @@
+{
+  "checkpoint": "/Users/wangyiming/Desktop/E题/problem2/outputs/dropout03_lr_drop/seed2028/best.pt",
+  "sha256": "136a04d6287541df4ca76e0f5049597ad10bdd08ac72a3b78e5f919c7c231cba",
+  "seed": 2028,
+  "selected_epoch": 9,
+  "model_config": {
+    "hidden": 128,
+    "heads": 4,
+    "dropout": 0.3,
+    "lr": 0.0002,
+    "seed": 2028,
+    "batch_size": 32,
+    "epochs_requested": 12,
+    "patience": 4,
+    "class_counts": [
+      967,
+      758,
+      1670
+    ],
+    "limit": null,
+    "ablation": "fixed_gate",
+    "lr_drop_epoch": 6,
+    "lr_drop_factor": 0.25,
+    "ema_start_epoch": null,
+    "ema_decay": 0.995
+  },
+  "figure_count": 16,
+  "mask_seed_base": 2028,
+  "random_mask_seeds": [
+    2028,
+    2029,
+    2030,
+    2031,
+    2032
+  ],
+  "matched_ablation_figure": "14_architecture_ablation_seed2028",
+  "attachment3": {
+    "n": 30,
+    "class_counts": {
+      "Negative": 6,
+      "Neutral": 8,
+      "Positive": 16
+    },
+    "score_mean": 0.4080155333333334,
+    "mean_missing_ratio": 0.13416360000000002,
+    "ground_truth_available": false
+  }
+}

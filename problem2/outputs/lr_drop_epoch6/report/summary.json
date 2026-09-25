@@ -1,0 +1,23 @@
+{
+  "best_epoch": 9,
+  "lr_drop_epoch": 6,
+  "initial_lr": 0.0002,
+  "reduced_lr": 5e-05,
+  "best_selection_score": 0.5895752382594529,
+  "overall": [
+    {
+      "split": "train",
+      "n": 3395,
+      "accuracy": 0.7852724594992636,
+      "macro_f1": 0.7742342583244666,
+      "mae": 0.43370837648563765
+    },
+    {
+      "split": "valid",
+      "n": 728,
+      "accuracy": 0.635989010989011,
+      "macro_f1": 0.6297840606108603,
+      "mae": 0.6278636055553312
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "selection_rule": "0.5*valid_clean_macro_f1 + 0.5*valid_missing_30pct_macro_f1 - 0.05*valid_missing_30pct_mae",
+  "selected_variant": "fixed_gate",
+  "selected_score": 0.5815227708657106,
+  "candidates": [
+    {
+      "variant": "none",
+      "best_epoch": "5",
+      "valid_accuracy": "0.6153846153846154",
+      "valid_macro_f1": "0.6133709255542446",
+      "valid_mae": "0.6106104551381777",
+      "missing_30pct_macro_f1": "0.5940976344942124",
+      "missing_30pct_mae": "0.6130133243754204",
+      "selection_score": 0.5730836138054575
+    },
+    {
+      "variant": "no_block",
+      "best_epoch": "2",
+      "valid_accuracy": "0.6222527472527473",
+      "valid_macro_f1": "0.6044157820418917",
+      "valid_mae": "0.7306137932218217",
+      "missing_30pct_macro_f1": "0.5801138552534022",
+      "missing_30pct_mae": "0.6543650470375324",
+      "selection_score": 0.5595465662957703
+    },
+    {
+      "variant": "no_reconstruction",
+      "best_epoch": "5",
+      "valid_accuracy": "0.6208791208791209",
+      "valid_macro_f1": "0.6168458511227244",
+      "valid_mae": "0.6034693022877116",
+      "missing_30pct_macro_f1": "0.6059480338866013",
+      "missing_30pct_mae": "0.6087613854522735",
+      "selection_score": 0.5809588732320491
+    },
+    {
+      "variant": "fixed_gate",
+      "best_epoch": "5",
+      "valid_accuracy": "0.614010989010989",
+      "valid_macro_f1": "0.6138286349931209",
+      "valid_mae": "0.6138923002994149",
+      "missing_30pct_macro_f1": "0.6103741029580741",
+      "missing_30pct_mae": "0.6115719621977385",
+      "selection_score": 0.5815227708657106
+    },
+    {
+      "variant": "no_consistency",
+      "best_epoch": "6",
+      "valid_accuracy": "0.6222527472527473",
+      "valid_macro_f1": "0.6078690934431004",
+      "valid_mae": "0.706221117441041",
+      "missing_30pct_macro_f1": "0.5982464206061201",
+      "missing_30pct_mae": "0.706565832220284",
+      "selection_score": 0.567729465413596
+    }
+  ],
+  "test_used_for_selection": false
+}

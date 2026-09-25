@@ -1,0 +1,21 @@
+{
+  "hidden": 128,
+  "heads": 4,
+  "dropout": 0.3,
+  "lr": 0.0002,
+  "seed": 2026,
+  "batch_size": 32,
+  "epochs_requested": 12,
+  "patience": 4,
+  "class_counts": [
+    967,
+    758,
+    1670
+  ],
+  "limit": null,
+  "ablation": "fixed_gate",
+  "lr_drop_epoch": 6,
+  "lr_drop_factor": 0.25,
+  "ema_start_epoch": null,
+  "ema_decay": 0.995
+}

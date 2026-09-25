@@ -1,0 +1,17 @@
+{
+  "hidden": 128,
+  "heads": 4,
+  "dropout": 0.2,
+  "lr": 0.0002,
+  "seed": 2026,
+  "batch_size": 32,
+  "epochs_requested": 12,
+  "patience": 4,
+  "class_counts": [
+    967,
+    758,
+    1670
+  ],
+  "limit": null,
+  "ablation": "no_reconstruction"
+}

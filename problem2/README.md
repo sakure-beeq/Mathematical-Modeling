@@ -119,3 +119,18 @@ python -m unittest discover -s problem2/tests -v
 | `release/seed2028/` | 最终权重、图表、指标、预测和说明 |
 
 `ema_report.py`、`dropout_report.py`、`hidden96_report.py` 等保留了调参实验的复现脚本；最终提交以本 README 上述种子 2028 的固定门控模型为准。
+
+## 2028 同种子缺失实验与消融复核
+
+新增的 `outputs/deliverable_seed2028_all2028/` 是对上述图表的同种子复核版，推荐优先使用。最终模型仍为 `outputs/dropout03_lr_drop/seed2028/best.pt`。原缺失实验使用 2026–2030 作为五次遮挡位置种子；复核版将基准遮挡种子改为 2028，另以 2029–2032 做四次位置重复。因此交付包同时提供严格使用遮挡种子 2028 的 140 行结果，以及包含五次重复的 280 行结果。附件 3 的 30 条预测也用所选检查点重新推理。
+
+五组架构消融在同一数据划分、训练种子 2028、dropout 0.3、隐藏维度 128、第 6 轮降学习率的配置下比较，结果保存在 `outputs/seed2028_reanalysis/ablations/` 与 `outputs/deliverable_seed2028_all2028/ablation_summary_seed2028.csv`。等权融合组使用已核验的第 9 轮检查点，其余四组重新训练。消融汇总由 `python problem2/ablation_seed2028_report.py` 生成，完整图表由 `python problem2/figures/build_seed2028_all2028.py` 生成。
+
+缺失实验复现命令：
+
+```bash
+python problem2/main.py robustness --split valid --seeds 5 --bootstrap 200 \
+  --mask-seed-base 2028 --batch-size 128 \
+  --checkpoint problem2/outputs/dropout03_lr_drop/seed2028/best.pt \
+  --out problem2/outputs/seed2028_reanalysis/robustness
+```

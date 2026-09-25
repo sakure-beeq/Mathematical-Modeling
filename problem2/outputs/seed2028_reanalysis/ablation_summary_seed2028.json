@@ -1,0 +1,8 @@
+{
+  "training_seed": 2028,
+  "mask_seed": 2028,
+  "selection_rule": "0.5*clean_macro_f1 + 0.5*missing_macro_f1 - 0.05*missing_mae",
+  "highest_scoring_variant": "fixed_gate",
+  "fixed_gate_retained_as_user_selected_final_model": true,
+  "test_used_for_ablation_selection": false
+}

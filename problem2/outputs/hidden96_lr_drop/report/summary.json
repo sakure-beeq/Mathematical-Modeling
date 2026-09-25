@@ -1,0 +1,63 @@
+{
+  "runs": [
+    {
+      "seed": 2026,
+      "best_epoch": 7,
+      "selection": 0.581571164895837,
+      "train_accuracy": 0.7175257731958763,
+      "train_macro_f1": 0.7060931848334427,
+      "train_mae": 0.47839275943053633,
+      "valid_accuracy": 0.6195054945054945,
+      "valid_macro_f1": 0.6128383400241239,
+      "valid_mae": 0.6177883754777952,
+      "baseline_best_epoch": 9,
+      "baseline_valid_accuracy": 0.635989010989011,
+      "baseline_valid_macro_f1": 0.6297840606108603,
+      "baseline_valid_mae": 0.6278636055553312
+    },
+    {
+      "seed": 2027,
+      "best_epoch": 8,
+      "selection": 0.5826558569985695,
+      "train_accuracy": 0.7245949926362297,
+      "train_macro_f1": 0.7103172965705887,
+      "train_mae": 0.48600477828621585,
+      "valid_accuracy": 0.6291208791208791,
+      "valid_macro_f1": 0.6211718397818605,
+      "valid_mae": 0.6112124233466323,
+      "baseline_best_epoch": 7,
+      "baseline_valid_accuracy": 0.6318681318681318,
+      "baseline_valid_macro_f1": 0.6182210840848607,
+      "baseline_valid_mae": 0.6501922346597184
+    },
+    {
+      "seed": 2028,
+      "best_epoch": 6,
+      "selection": 0.5893403543382674,
+      "train_accuracy": 0.7225331369661266,
+      "train_macro_f1": 0.7055996456523846,
+      "train_mae": 0.49720929387599555,
+      "valid_accuracy": 0.6304945054945055,
+      "valid_macro_f1": 0.6183667526073039,
+      "valid_mae": 0.6142089364568544,
+      "baseline_best_epoch": 9,
+      "baseline_valid_accuracy": 0.6332417582417582,
+      "baseline_valid_macro_f1": 0.6169791479539969,
+      "baseline_valid_mae": 0.6185955505414833
+    }
+  ],
+  "aggregate": {
+    "valid_accuracy_mean": 0.6263736263736264,
+    "valid_accuracy_sd": 0.005987498548819585,
+    "baseline_valid_accuracy_mean": 0.6336996336996337,
+    "delta_accuracy_mean": -0.0073260073260073,
+    "valid_macro_f1_mean": 0.6174589774710961,
+    "valid_macro_f1_sd": 0.004240264888717109,
+    "baseline_valid_macro_f1_mean": 0.6216614308832393,
+    "delta_macro_f1_mean": -0.004202453412143203,
+    "valid_mae_mean": 0.6144032450937607,
+    "valid_mae_sd": 0.003292279376453155,
+    "baseline_valid_mae_mean": 0.6322171302521776,
+    "delta_mae_mean": -0.017813885158417014
+  }
+}

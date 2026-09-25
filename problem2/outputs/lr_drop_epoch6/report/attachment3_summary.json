@@ -1,0 +1,78 @@
+{
+  "model": "fixed_gate, lr reduced from 2e-4 to 5e-5 at epoch 6, selected epoch 9",
+  "n": 30,
+  "class_counts": {
+    "Negative": 6,
+    "Neutral": 9,
+    "Positive": 15
+  },
+  "mean_score_by_predicted_class": {
+    "Negative": -0.6141295,
+    "Neutral": 0.07984722222222222,
+    "Positive": 0.5810239333333332
+  },
+  "missing_type_counts": {
+    "none": 3,
+    "AV": 27
+  },
+  "mean_missing_ratio": 0.13416360000000002,
+  "mean_missing_ratio_nonzero": 0.14907066666666666,
+  "max_missing_ratio": 0.324324,
+  "score_mean": 0.1916402333333333,
+  "score_median": 0.32211900000000004,
+  "score_min": -1.635893,
+  "score_max": 1.399129,
+  "mean_max_softmax_probability": 0.6591422000000001,
+  "low_max_probability_below_0_55": [
+    "附件3_04",
+    "附件3_07",
+    "附件3_08",
+    "附件3_11",
+    "附件3_12",
+    "附件3_13",
+    "附件3_17",
+    "附件3_20",
+    "附件3_22",
+    "附件3_28"
+  ],
+  "top_two_probability_margin_below_0_05": [
+    "附件3_17",
+    "附件3_28"
+  ],
+  "class_score_sign_disagreement": [
+    "附件3_24"
+  ],
+  "changed_class_from_original_model": [
+    {
+      "id": "附件3_07",
+      "previous": "Neutral",
+      "current": "Positive"
+    },
+    {
+      "id": "附件3_11",
+      "previous": "Neutral",
+      "current": "Positive"
+    },
+    {
+      "id": "附件3_13",
+      "previous": "Neutral",
+      "current": "Positive"
+    },
+    {
+      "id": "附件3_18",
+      "previous": "Neutral",
+      "current": "Positive"
+    },
+    {
+      "id": "附件3_22",
+      "previous": "Neutral",
+      "current": "Positive"
+    },
+    {
+      "id": "附件3_28",
+      "previous": "Neutral",
+      "current": "Positive"
+    }
+  ],
+  "ground_truth_available": false
+}

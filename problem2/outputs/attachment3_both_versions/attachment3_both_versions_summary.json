@@ -1,0 +1,28 @@
+{
+  "n": 30,
+  "class_agreements": 22,
+  "class_disagreements": 8,
+  "agreement_rate": 0.7333333333333333,
+  "aligned_class_counts": {
+    "Negative": 6,
+    "Neutral": 9,
+    "Positive": 15
+  },
+  "unaligned_class_counts": {
+    "Negative": 6,
+    "Neutral": 9,
+    "Positive": 15
+  },
+  "mean_absolute_score_difference": 0.3864168333333334,
+  "disagreement_ids": [
+    "附件3_07",
+    "附件3_08",
+    "附件3_12",
+    "附件3_22",
+    "附件3_23",
+    "附件3_24",
+    "附件3_25",
+    "附件3_26"
+  ],
+  "ground_truth_available": false
+}

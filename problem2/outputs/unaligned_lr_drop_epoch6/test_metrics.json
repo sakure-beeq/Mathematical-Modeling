@@ -1,0 +1,31 @@
+{
+  "accuracy": 0.6602475928473177,
+  "macro_f1": 0.6387867333562667,
+  "weighted_f1": 0.6700672395953134,
+  "mae": 0.6125112213750026,
+  "pearson": 0.7012172277594861,
+  "confusion_matrix": [
+    [
+      147,
+      39,
+      21
+    ],
+    [
+      30,
+      88,
+      40
+    ],
+    [
+      31,
+      86,
+      245
+    ]
+  ],
+  "bootstrap_95pct_ci": {
+    "accuracy": null,
+    "macro_f1": null,
+    "weighted_f1": null,
+    "mae": null,
+    "pearson": null
+  }
+}

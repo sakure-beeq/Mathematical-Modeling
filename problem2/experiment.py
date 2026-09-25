@@ -380,9 +380,11 @@ def evaluate(data_dir: Path, checkpoint: Path, out_dir: Path,
 def robustness(data_dir: Path, checkpoint: Path, out_dir: Path,
                split: str = "valid", batch_size: int = 64,
                device_name: str = "cpu", seeds: int = 5,
-               bootstrap: int = 200) -> None:
+               bootstrap: int = 200, mask_seed_base: int = 2026) -> None:
     if split not in ("valid", "test"):
         raise ValueError("robustness split must be valid or test")
+    if seeds < 1 or bootstrap < 0 or mask_seed_base < 0:
+        raise ValueError("seeds must be positive; bootstrap and mask seed must be nonnegative")
     out_dir.mkdir(parents=True, exist_ok=True)
     device = torch.device(device_name)
     model = load_model(checkpoint, device)
@@ -394,14 +396,15 @@ def robustness(data_dir: Path, checkpoint: Path, out_dir: Path,
         for ratio in (0.1, 0.2, 0.3, 0.4, 0.5):
             for position in ("start", "middle", "end", "random"):
                 # Start/middle/end are deterministic; repeat only random placement.
-                for seed in range(seeds if position == "random" else 1):
+                for repetition in range(seeds if position == "random" else 1):
+                    mask_seed = mask_seed_base + repetition
                     pred = predict_loader(model, loader, device,
-                                          (ratio, position, mods, 2026 + seed))
+                                          (ratio, position, mods, mask_seed))
                     metrics = metrics_from_predictions(pred)
                     ci = paired_delta_ci(baseline_predictions, pred, bootstrap,
-                                         2026 + seed) if bootstrap else None
+                                         mask_seed) if bootstrap else None
                     rows.append({"modality": mods, "ratio": ratio,
-                                 "position": position, "seed": 2026 + seed,
+                                 "position": position, "seed": mask_seed,
                                  "actual_missing_ratio": float(np.mean(pred["missing_ratio"])),
                                  **{k: metrics[k] for k in
                                     ("accuracy", "macro_f1", "weighted_f1", "mae", "pearson")},

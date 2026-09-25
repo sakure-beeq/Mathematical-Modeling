@@ -69,6 +69,8 @@ def parser() -> argparse.ArgumentParser:
     rob.add_argument("--device", default="cpu")
     rob.add_argument("--seeds", type=int, default=5)
     rob.add_argument("--bootstrap", type=int, default=200)
+    rob.add_argument("--mask-seed-base", type=int, default=2026,
+                     help="first RNG seed for simulated missing-block placement")
     pred = sub.add_parser("predict3")
     pred.add_argument("--data", type=Path, default=ROOT / "problem2/cache")
     pred.add_argument("--checkpoint", type=Path, default=ROOT / "problem2/outputs/best.pt")
@@ -109,7 +111,7 @@ def main() -> None:
                  a.device, a.bootstrap)
     elif a.command == "robustness":
         robustness(a.data, a.checkpoint, a.out, a.split, a.batch_size,
-                   a.device, a.seeds, a.bootstrap)
+                   a.device, a.seeds, a.bootstrap, a.mask_seed_base)
     elif a.command == "predict3":
         predict_attachment3(a.data, a.checkpoint, a.output, a.batch_size, a.device)
     elif a.command == "errors":

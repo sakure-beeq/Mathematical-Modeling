@@ -1,21 +1,13 @@
-# E题：多模态情感建模
+# E题：多模态情感识别（问题 1–3）
 
-本仓库包含数学建模文档、数据预处理代码，以及问题1至问题3的模型和结果。
+本仓库收录三个问题的正式代码、训练权重、结果、图表与复现说明。
 
-## 目录
+| 问题 | 代码与说明 | 正式输出 | 模型 |
+| --- | --- | --- | --- |
+| 1 多模态特征提取 | [problem1/README.md](problem1/README.md) | [problem1/outputs/](problem1/outputs/)、[problem1/delivery/](problem1/delivery/) | 冻结 BERT、MFA、OpenFace 与 74 维声学特征 |
+| 2 缺失模态情感预测 | [problem2/README.md](problem2/README.md) | [problem2/release/seed2028/](problem2/release/seed2028/)、[problem2/outputs/](problem2/outputs/) | RobustFusion fixed_gate，种子 2028 |
+| 3 可解释情感预测 | [problem3_2/README.md](problem3_2/README.md) | [problem3_2/outputs/](problem3_2/outputs/) | 独立训练的 InteractionModel，种子 2030 |
 
-- [`Project/`](Project/)：通用多模态特征预处理程序和测试。
-- [`problem1/`](problem1/)：从原始视频生成问题1特征的程序、环境说明和测试源码。
-- [`problem2/`](problem2/)：使用附件2对齐特征训练鲁棒预测模型，并对附件3推理的程序和测试源码。
-- [`problem3_2/`](problem3_2/)：针对附件4的可解释性多模态情感预测主模型、权重、预测结果和解释文件。复现及文件说明见其 [`README.md`](problem3_2/README.md)。
-- `build_modeling_solution.py`：生成建模方案文档的脚本。
+原始附件 1–4、下载的 BERT/OpenFace 文件及预处理缓存体积约 12 GB，未放入本仓库。请按各问题的 README 和复现说明将附件放在项目根目录 `E题数据/`，将 BERT 放在 `problem1/models/bert-base-uncased/`；其他本地生成的缓存由相应准备命令重建。问题 2 的主方案使用附件 2 与附件 3 对齐版；问题 3 主方案使用附件 2 与附件 4 对齐版及其视频，不读取问题 2 的预测权重。
 
-问题1的正式输出是 [`problem1/outputs/problem1_features.pkl`](problem1/outputs/problem1_features.pkl)；
-同目录的 `problem1_features.manifest.csv` 记录100条样本与原始文件的对应关系。
-复现步骤、依赖和参数见 [`problem1/README.md`](problem1/README.md)、
-[`problem1/requirement.md`](problem1/requirement.md) 和
-[`problem1/outputs/problem1_features.reproduce.md`](problem1/outputs/problem1_features.reproduce.md)。
-
-原始数据位于本地 `E题数据/`，BERT、MFA 和 OpenFace 模型为外部资源；它们体积较大，
-未纳入 Git 历史。问题2的缓存、模型权重、训练及测试结果和问题1的新交付产物也仅保留在本地；问题3主模型的权重与最终输出已纳入仓库。
-从原始视频重新提取时，需按上述说明自行准备数据和模型。
+文件完整性可通过 [UPLOAD_MANIFEST.json](UPLOAD_MANIFEST.json) 核验。

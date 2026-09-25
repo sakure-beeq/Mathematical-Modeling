@@ -1,0 +1,294 @@
+{
+  "short_text_le_10": {
+    "n": 99,
+    "accuracy": 0.696969696969697,
+    "macro_f1": 0.6932367149758454,
+    "weighted_f1": 0.7009222661396575,
+    "mae": 0.5091329396824644,
+    "pearson": 0.8108960546076222,
+    "confusion_matrix": [
+      [
+        30,
+        6,
+        0
+      ],
+      [
+        5,
+        20,
+        5
+      ],
+      [
+        1,
+        13,
+        19
+      ]
+    ]
+  },
+  "medium_text_11_to_30": {
+    "n": 449,
+    "accuracy": 0.6659242761692651,
+    "macro_f1": 0.6217854317982687,
+    "weighted_f1": 0.6694377190587568,
+    "mae": 0.6565453638882689,
+    "pearson": 0.6558182769869181,
+    "confusion_matrix": [
+      [
+        85,
+        19,
+        15
+      ],
+      [
+        17,
+        40,
+        34
+      ],
+      [
+        25,
+        40,
+        174
+      ]
+    ]
+  },
+  "long_text_gt_30": {
+    "n": 179,
+    "accuracy": 0.7039106145251397,
+    "macro_f1": 0.6105580693815987,
+    "weighted_f1": 0.6756490305619455,
+    "mae": 0.6851453893927223,
+    "pearson": 0.6433707074294793,
+    "confusion_matrix": [
+      [
+        42,
+        2,
+        8
+      ],
+      [
+        13,
+        8,
+        16
+      ],
+      [
+        10,
+        4,
+        76
+      ]
+    ]
+  },
+  "vision_entirely_unavailable": {
+    "n": 28,
+    "accuracy": 0.75,
+    "macro_f1": 0.7752525252525252,
+    "weighted_f1": 0.7426948051948052,
+    "mae": 0.40824342745223213,
+    "pearson": 0.840487887694475,
+    "confusion_matrix": [
+      [
+        5,
+        0,
+        0
+      ],
+      [
+        1,
+        7,
+        4
+      ],
+      [
+        0,
+        2,
+        9
+      ]
+    ]
+  },
+  "vision_partly_unavailable": {
+    "n": 71,
+    "accuracy": 0.7464788732394366,
+    "macro_f1": 0.6873881465430761,
+    "weighted_f1": 0.7566522040634319,
+    "mae": 0.6296700388848991,
+    "pearson": 0.6786772001323718,
+    "confusion_matrix": [
+      [
+        17,
+        4,
+        2
+      ],
+      [
+        3,
+        6,
+        2
+      ],
+      [
+        2,
+        5,
+        30
+      ]
+    ]
+  },
+  "vision_all_content_valid": {
+    "n": 628,
+    "accuracy": 0.6687898089171974,
+    "macro_f1": 0.6266125579105855,
+    "weighted_f1": 0.6675604568781355,
+    "mae": 0.6555679385130632,
+    "pearson": 0.6738805391337185,
+    "confusion_matrix": [
+      [
+        135,
+        23,
+        21
+      ],
+      [
+        31,
+        55,
+        49
+      ],
+      [
+        34,
+        50,
+        230
+      ]
+    ]
+  },
+  "largest_misclassified_score_errors": [
+    {
+      "id": "91844$_$5",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 3.0,
+      "pred_score": -0.7562229633331299
+    },
+    {
+      "id": "208322$_$12",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -2.3333332538604736,
+      "pred_score": 0.9792636036872864
+    },
+    {
+      "id": "79356$_$7",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.6666667461395264,
+      "pred_score": -0.4608355760574341
+    },
+    {
+      "id": "211875$_$4",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -1.6666666269302368,
+      "pred_score": 1.3060753345489502
+    },
+    {
+      "id": "110565$_$1",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -1.0,
+      "pred_score": 1.8525499105453491
+    },
+    {
+      "id": "224370$_$5",
+      "true_class": "Negative",
+      "pred_class": "Neutral",
+      "true_score": -2.6666667461395264,
+      "pred_score": 0.11826559901237488
+    },
+    {
+      "id": "245582$_$16",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 1.0,
+      "pred_score": -1.7511706352233887
+    },
+    {
+      "id": "135623$_$8",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -1.3333333730697632,
+      "pred_score": 1.3822519779205322
+    },
+    {
+      "id": "273250$_$12",
+      "true_class": "Negative",
+      "pred_class": "Neutral",
+      "true_score": -2.6666667461395264,
+      "pred_score": -0.12339682877063751
+    },
+    {
+      "id": "d-Uw_uZyUys$_$1",
+      "true_class": "Negative",
+      "pred_class": "Neutral",
+      "true_score": -2.3333332538604736,
+      "pred_score": 0.15755736827850342
+    },
+    {
+      "id": "fsBzpr4k3rY$_$0",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.0,
+      "pred_score": -0.374688059091568
+    },
+    {
+      "id": "wnL3ld9bM2o$_$25",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.0,
+      "pred_score": -0.33874809741973877
+    },
+    {
+      "id": "jj8aSNPHMw8$_$5",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -1.3333333730697632,
+      "pred_score": 1.004149317741394
+    },
+    {
+      "id": "OORklkFql3k$_$4",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -2.0,
+      "pred_score": 0.33043813705444336
+    },
+    {
+      "id": "10219$_$10",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.0,
+      "pred_score": -0.3118792474269867
+    },
+    {
+      "id": "198112$_$8",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.0,
+      "pred_score": -0.2734062075614929
+    },
+    {
+      "id": "273250$_$16",
+      "true_class": "Negative",
+      "pred_class": "Neutral",
+      "true_score": -2.3333332538604736,
+      "pred_score": -0.18316790461540222
+    },
+    {
+      "id": "112425$_$10",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.3333332538604736,
+      "pred_score": 0.1923309713602066
+    },
+    {
+      "id": "28006$_$17",
+      "true_class": "Negative",
+      "pred_class": "Neutral",
+      "true_score": -2.0,
+      "pred_score": 0.11027717590332031
+    },
+    {
+      "id": "198112$_$9",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.3333332538604736,
+      "pred_score": 0.2280886471271515
+    }
+  ]
+}

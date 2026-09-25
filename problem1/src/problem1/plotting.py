@@ -11,7 +11,12 @@ from typing import Any
 import numpy as np
 
 
-def plot_sample(sample: dict[str, Any], output: Path, ffmpeg: str = "ffmpeg") -> None:
+def plot_sample(
+    sample: dict[str, Any],
+    output: Path,
+    ffmpeg: str = "ffmpeg",
+    normalize_norms: bool = True,
+) -> None:
     os.environ.setdefault("MPLCONFIGDIR", str(Path(tempfile.gettempdir()) / "problem1-matplotlib"))
     os.environ.setdefault("XDG_CACHE_HOME", str(Path(tempfile.gettempdir()) / "problem1-xdg-cache"))
     try:
@@ -67,23 +72,30 @@ def plot_sample(sample: dict[str, Any], output: Path, ffmpeg: str = "ffmpeg") ->
         axes[2].set_ylabel("video frames")
 
     # Feature scales differ greatly; rescale each modality only for display.
-    scaled = np.zeros_like(modality_norms)
-    for row in range(3):
-        low = float(modality_norms[row].min())
-        high = float(modality_norms[row].max())
-        if high > low:
-            scaled[row] = (modality_norms[row] - low) / (high - low)
+    if normalize_norms:
+        display_norms = np.zeros_like(modality_norms)
+        for row in range(3):
+            low = float(modality_norms[row].min())
+            high = float(modality_norms[row].max())
+            if high > low:
+                display_norms[row] = (modality_norms[row] - low) / (high - low)
+        color_max = 1.0
+        color_label = "within-modality norm range"
+    else:
+        display_norms = modality_norms
+        color_max = float(np.max(modality_norms))
+        color_label = "raw feature norm"
     image = axes[3].imshow(
-        scaled,
+        display_norms,
         aspect="auto",
         interpolation="nearest",
         extent=(intervals[0, 0], intervals[-1, 1], 2.5, -0.5),
-        cmap="viridis", vmin=0, vmax=1,
+        cmap="viridis", vmin=0, vmax=color_max,
     )
     axes[3].set_yticks([0, 1, 2], ["text", "audio", "vision"])
     axes[3].set_ylabel("relative norm")
     axes[3].set_xlabel("time (seconds)")
-    figure.colorbar(image, ax=axes[3], pad=0.01, label="within-modality norm range")
+    figure.colorbar(image, ax=axes[3], pad=0.01, label=color_label)
     axes[3].set_xlim(intervals[0, 0] - 0.2, intervals[-1, 1] + 0.2)
     output.parent.mkdir(parents=True, exist_ok=True)
     figure.savefig(output, dpi=180)

@@ -1,0 +1,294 @@
+{
+  "short_text_le_10": {
+    "n": 83,
+    "accuracy": 0.6265060240963856,
+    "macro_f1": 0.6318284889713461,
+    "weighted_f1": 0.6312448309005968,
+    "mae": 0.66714406805674,
+    "pearson": 0.6218507755510255,
+    "confusion_matrix": [
+      [
+        17,
+        8,
+        1
+      ],
+      [
+        6,
+        19,
+        3
+      ],
+      [
+        2,
+        11,
+        16
+      ]
+    ]
+  },
+  "medium_text_11_to_30": {
+    "n": 459,
+    "accuracy": 0.5904139433551199,
+    "macro_f1": 0.5904159586192442,
+    "weighted_f1": 0.6016230927180881,
+    "mae": 0.5780002552930221,
+    "pearson": 0.6492358465656919,
+    "confusion_matrix": [
+      [
+        73,
+        33,
+        10
+      ],
+      [
+        18,
+        75,
+        27
+      ],
+      [
+        21,
+        79,
+        123
+      ]
+    ]
+  },
+  "long_text_gt_30": {
+    "n": 186,
+    "accuracy": 0.6720430107526881,
+    "macro_f1": 0.6553537242588136,
+    "weighted_f1": 0.6773732772979792,
+    "mae": 0.665856647916058,
+    "pearson": 0.6734398727919735,
+    "confusion_matrix": [
+      [
+        47,
+        7,
+        10
+      ],
+      [
+        6,
+        23,
+        7
+      ],
+      [
+        12,
+        19,
+        55
+      ]
+    ]
+  },
+  "vision_entirely_unavailable": {
+    "n": 15,
+    "accuracy": 0.6,
+    "macro_f1": 0.6231481481481481,
+    "weighted_f1": 0.5877777777777777,
+    "mae": 0.5483686099449794,
+    "pearson": 0.5920029897481501,
+    "confusion_matrix": [
+      [
+        2,
+        1,
+        0
+      ],
+      [
+        0,
+        5,
+        1
+      ],
+      [
+        0,
+        4,
+        2
+      ]
+    ]
+  },
+  "vision_partly_unavailable": {
+    "n": 70,
+    "accuracy": 0.5714285714285714,
+    "macro_f1": 0.5576458565589,
+    "weighted_f1": 0.5862298932951107,
+    "mae": 0.6569247472898236,
+    "pearson": 0.6020465077677754,
+    "confusion_matrix": [
+      [
+        10,
+        3,
+        2
+      ],
+      [
+        2,
+        8,
+        5
+      ],
+      [
+        5,
+        13,
+        22
+      ]
+    ]
+  },
+  "vision_all_content_valid": {
+    "n": 643,
+    "accuracy": 0.6205287713841369,
+    "macro_f1": 0.6180153265658058,
+    "weighted_f1": 0.6294244453758365,
+    "mae": 0.6070204508260203,
+    "pearson": 0.6617215723245073,
+    "confusion_matrix": [
+      [
+        125,
+        44,
+        19
+      ],
+      [
+        28,
+        104,
+        31
+      ],
+      [
+        30,
+        92,
+        170
+      ]
+    ]
+  },
+  "largest_misclassified_score_errors": [
+    {
+      "id": "f_ZJ7L14oYQ$_$21",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.0,
+      "pred_score": -1.6684889793395996
+    },
+    {
+      "id": "102858$_$6",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.6666667461395264,
+      "pred_score": -0.5290516018867493
+    },
+    {
+      "id": "130456$_$11",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 1.6666666269302368,
+      "pred_score": -1.01357901096344
+    },
+    {
+      "id": "266791$_$23",
+      "true_class": "Negative",
+      "pred_class": "Neutral",
+      "true_score": -2.6666667461395264,
+      "pred_score": -0.006801578216254711
+    },
+    {
+      "id": "rojyUp4FPSg$_$9",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.0,
+      "pred_score": -0.6552731394767761
+    },
+    {
+      "id": "102858$_$20",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.0,
+      "pred_score": -0.5139607787132263
+    },
+    {
+      "id": "130456$_$3",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.3333332538604736,
+      "pred_score": -0.11984626203775406
+    },
+    {
+      "id": "102408$_$5",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -2.0,
+      "pred_score": 0.28307390213012695
+    },
+    {
+      "id": "252998$_$7",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 1.3333333730697632,
+      "pred_score": -0.9486163258552551
+    },
+    {
+      "id": "32681$_$5",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 0.3333333432674408,
+      "pred_score": -1.919166088104248
+    },
+    {
+      "id": "icbUzboLcDQ$_$0",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -0.6666666865348816,
+      "pred_score": 1.5470420122146606
+    },
+    {
+      "id": "rojyUp4FPSg$_$18",
+      "true_class": "Positive",
+      "pred_class": "Neutral",
+      "true_score": 2.5,
+      "pred_score": 0.37821274995803833
+    },
+    {
+      "id": "x2lOwQaAn4g$_$4",
+      "true_class": "Neutral",
+      "pred_class": "Positive",
+      "true_score": 0.0,
+      "pred_score": 2.0982842445373535
+    },
+    {
+      "id": "236021$_$3",
+      "true_class": "Neutral",
+      "pred_class": "Negative",
+      "true_score": 0.0,
+      "pred_score": -2.087376356124878
+    },
+    {
+      "id": "gR4gM_WXesQ$_$20",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -1.3333333730697632,
+      "pred_score": 0.7480337619781494
+    },
+    {
+      "id": "247318$_$2",
+      "true_class": "Negative",
+      "pred_class": "Neutral",
+      "true_score": -1.6666666269302368,
+      "pred_score": 0.3649913966655731
+    },
+    {
+      "id": "erNDEjQeox8$_$12",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 2.0,
+      "pred_score": 0.018071947619318962
+    },
+    {
+      "id": "102858$_$21",
+      "true_class": "Positive",
+      "pred_class": "Negative",
+      "true_score": 1.0,
+      "pred_score": -0.9361289739608765
+    },
+    {
+      "id": "vU0a4F36Ksw$_$20",
+      "true_class": "Positive",
+      "pred_class": "Neutral",
+      "true_score": 1.6666666269302368,
+      "pred_score": -0.2459123134613037
+    },
+    {
+      "id": "K0m1tO3Ybyc$_$8",
+      "true_class": "Negative",
+      "pred_class": "Positive",
+      "true_score": -1.3333333730697632,
+      "pred_score": 0.5665155649185181
+    }
+  ]
+}
